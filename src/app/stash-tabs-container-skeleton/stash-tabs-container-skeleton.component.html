@@ -1,0 +1,23 @@
+<fd-toolbar>
+  <ngx-skeleton-loader fd-toolbar-item [count]="1"></ngx-skeleton-loader>
+
+  <fd-toolbar-spacer></fd-toolbar-spacer>
+  <ngx-skeleton-loader fd-toolbar-item [count]="1"></ngx-skeleton-loader>
+  <ngx-skeleton-loader fd-toolbar-item [count]="1"></ngx-skeleton-loader>
+</fd-toolbar>
+<table fd-table>
+  <thead fd-table-header>
+    <tr fd-table-row>
+      <th fd-table-cell>Name</th>
+      <th fd-table-cell>Type Line</th>
+    </tr>
+  </thead>
+  <tbody fd-table-body>
+    <tr *ngFor="let row of items" fd-table-row>
+      <td fd-table-cell class="tbl-td-stash-tab-name fd-has-font-weight-semi">
+        <a fd-link href="#"></a>
+      </td>
+      <td fd-table-cell></td>
+    </tr>
+  </tbody>
+</table>

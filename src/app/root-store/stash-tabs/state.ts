@@ -16,7 +16,7 @@ export interface State extends EntityState<ApiResponse> {
 export const initialState: State = stashTabAdapter.getInitialState({
   selectedId: '',
   nextStashTabId: null,
-  loading: false,
+  loading: true,
   error: null,
   searchTerm: null,
   league: null,

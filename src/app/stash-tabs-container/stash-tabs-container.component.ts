@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter,
   Input,
+  ViewEncapsulation,
 } from '@angular/core';
 import { FdSelectChange } from '@fundamental-ngx/core';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
@@ -16,6 +17,7 @@ import { Item, StringOrNull } from '../models';
   templateUrl: './stash-tabs-container.component.html',
   styleUrls: ['./stash-tabs-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class StashTabsContainerComponent implements OnInit {
   @Input() items: Item[] = [];

@@ -6,6 +6,7 @@
       title="Please Wait"
     ></fd-busy-indicator>
   </div>
+  <app-stash-tabs-container-skeleton></app-stash-tabs-container-skeleton>
 </ng-container>
 
-<ng-content></ng-content>
+<ng-content *ngIf="!loading"></ng-content>

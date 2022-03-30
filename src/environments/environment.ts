@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   API_URL: 'http://localhost:3000',
-  DEBOUNCE_LOADING:200,
-  TIMER:30000,
+  DEBOUNCE_LOADING: 200,
+  TIMER: 20000,
   FIRST_STASH: 'b9799e92-0a0a-456f-b427-f4c67ed114f3',
 };
 

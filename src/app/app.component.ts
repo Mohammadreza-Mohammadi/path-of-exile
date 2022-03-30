@@ -32,9 +32,7 @@ export class AppComponent implements OnInit {
     );
 
     this.error$ = this._store.select(Selectors.selectError);
-    this.loading$ = this._store
-      .select(Selectors.selectLoading)
-      .pipe(debounceTime(environment.DEBOUNCE_LOADING));
+    this.loading$ = this._store.select(Selectors.selectLoading);
   }
   ngOnInit() {
     this._store

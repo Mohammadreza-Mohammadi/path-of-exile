@@ -16,11 +16,19 @@ import { LoadingHocComponent } from './loading-hoc/loading-hoc.component';
 import { ErrorHandlingHocComponent } from './error-handling-hoc/error-handling-hoc.component';
 
 import { LottieModule } from 'ngx-lottie';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { StashTabsContainerSkeletonComponent } from './stash-tabs-container-skeleton/stash-tabs-container-skeleton.component';
 export function playerFactory() {
   return import(/* webpackChunkName: 'lottie-web' */ 'lottie-web');
 }
 @NgModule({
-  declarations: [AppComponent, StashTabsContainerComponent, LoadingHocComponent, ErrorHandlingHocComponent],
+  declarations: [
+    AppComponent,
+    StashTabsContainerComponent,
+    LoadingHocComponent,
+    ErrorHandlingHocComponent,
+    StashTabsContainerSkeletonComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -28,7 +36,11 @@ export function playerFactory() {
     FundamentalNgxCoreModule,
     FundamentalNgxPlatformModule,
     RootStoreModule,
-    LottieModule.forRoot({ player: playerFactory })
+    LottieModule.forRoot({ player: playerFactory }),
+    NgxSkeletonLoaderModule.forRoot({
+      animation: 'pulse',
+      loadingText: 'This item is actually loading...',
+    }),
   ],
   providers: [HttpStashService, ContentDensityService],
   bootstrap: [AppComponent],

@@ -8,14 +8,12 @@ const stashTabReducer = createReducer(
   on(ActionTypes.Load, (state, action) => ({
     ...state,
     error: null,
-    loading: true,
-    loaded: false,
+    loading: true,    
     selectedId: action.id,
   })),
   on(ActionTypes.LoadStashTabSuccess, (state, action) => ({
     ...stashTabAdapter.upsertOne({ ...action.stashTab }, state),
-    loading: false,
-    loaded: true,
+    loading: false,    
     nextStashTabId: action.stashTab.next_change_id,
   })),
 
