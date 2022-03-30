@@ -25,9 +25,13 @@ const stashTabReducer = createReducer(
     loading: false,
     error: action.error,
   })),
-  on(ActionTypes.SelectStashTab, (state, action) => ({
+  on(ActionTypes.SetLeague, (state, action) => ({
     ...state,
-    selectedId: action.id,
+    league: action.name,
+  })),
+  on(ActionTypes.SetSearchTerm, (state, action) => ({
+    ...state,
+    searchTerm: action.term,
   }))
 );
 export function reducer(state: State | undefined, action: Action) {

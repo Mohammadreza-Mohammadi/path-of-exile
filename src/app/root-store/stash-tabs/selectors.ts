@@ -33,15 +33,26 @@ export const selectStashTab = createSelector(
   selectStashTabId,
   (entities, id) => entities[id]
 );
+export const selectAvailableLeague = createSelector(
+  selectStashTab,
+  (stashTab) => [...new Set(stashTab?.stashes.map((c) => c.league))]
+);
 export const selectStashLeague = createSelector(
   selectStashTab,
   (stashTab) => stashTab?.stashes[0].league
 );
 
-export const selectStashItems = createSelector(selectStashTab, (stashTab) =>
-  !stashTab
-    ? []
-    : stashTab.stashes
-        .map((c) => c.items)
-        .reduce((prev, curr, i) => curr.concat(prev), [])
+export const selectStashItems = createSelector(
+  selectState,
+  selectStashTab,
+  (state, stashTab) =>
+    !stashTab
+      ? []
+      : stashTab.stashes
+          .filter((c) => !state.league || c.league === state.league)
+          .map((c) => c.items)
+          .reduce((prev, curr, i) => curr.concat(prev), [])
+          .filter((c) =>
+            state.searchTerm ? c.name.includes(state.searchTerm) : c
+          )
 );

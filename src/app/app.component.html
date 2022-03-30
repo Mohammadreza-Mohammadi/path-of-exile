@@ -9,5 +9,17 @@
   <fd-shellbar-title> Path of Exile </fd-shellbar-title>
 </fd-shellbar>
 <ng-container *ngIf="stashItems$ | async as items">
-  <app-stash-tabs-container [items]="items"></app-stash-tabs-container>
+  <app-stash-tabs-container
+    [items]="items"
+    [leagues]="(availableLeagueInStashTab$ | async) ?? []"
+    (searchTermChange)="onSearchTermChange($event)"
+    (selectedLeagueChange)="onLeagueChange($event)"
+  ></app-stash-tabs-container>
 </ng-container>
+<div class="loading" *ngIf="loading$ | async">
+  <fd-busy-indicator
+    [loading]="true"
+    ariaLabel="loading"
+    title="Please Wait"
+  ></fd-busy-indicator>
+</div>
