@@ -14,13 +14,9 @@ import { Item, StringOrNull } from './models';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'path-of-exile';
   stashItems$: Observable<Item[]>;
   loading$: Observable<boolean>;
   availableLeagueInStashTab$: Observable<string[]>;
-  /**
-   *
-   */
 
   constructor(
     private _store: Store,
@@ -36,12 +32,12 @@ export class AppComponent implements OnInit {
 
     this.loading$ = this._store
       .select(Selectors.selectLoading)
-      .pipe(debounceTime(200));
+      .pipe(debounceTime(environment.DEBOUNCE_LOADING));
   }
   ngOnInit() {
     this._store
       .select(Selectors.selectNextStashTabId)
-      .pipe(delay(30000))
+      .pipe(delay(environment.TIMER))
       .subscribe((nextStashTabId) => {
         if (nextStashTabId)
           this._store.dispatch(Actions.Load({ id: nextStashTabId }));
