@@ -7,10 +7,10 @@ import {
   EventEmitter,
   Input,
 } from '@angular/core';
-import { FdSelectChange, MenuComponent } from '@fundamental-ngx/core';
+import { FdSelectChange } from '@fundamental-ngx/core';
 
-import { Item } from '../models';
-type StirngOrNull = string | null;
+import { Item, StringOrNull } from '../models';
+
 @Component({
   selector: 'app-stash-tabs-container',
   templateUrl: './stash-tabs-container.component.html',
@@ -18,20 +18,21 @@ type StirngOrNull = string | null;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StashTabsContainerComponent implements OnInit {
-  @ViewChild('menu', { static: false })
-  menu: MenuComponent | null = null;
-  @Output() searchTermChange = new EventEmitter<StirngOrNull>();
-  @Output() SelectedLeagueChange = new EventEmitter<StirngOrNull>();
+  @Output() searchTermChange = new EventEmitter<StringOrNull>();
+  @Output() selectedLeagueChange = new EventEmitter<StringOrNull>();
   @Input() items: Item[] = [];
   @Input() leagues: string[] = [];
 
   searchTerm: string = '';
+  league: string = '';
   constructor() {}
 
   ngOnInit(): void {}
 
   onLeagueSelectionChange(e: FdSelectChange) {
-    this.SelectedLeagueChange.emit(e.value);
+    this.selectedLeagueChange.emit(
+      typeof e === 'object' && e !== null ? e.value : e
+    );
   }
   onSearchInputChanged(event: string): void {
     this.searchTermChange.emit(event);

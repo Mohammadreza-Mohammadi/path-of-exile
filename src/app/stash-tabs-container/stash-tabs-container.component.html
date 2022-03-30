@@ -12,10 +12,11 @@
   </fd-input-group>
   <fd-select
     placeholder="Select an option"
+    [value]="league"
     (valueChange)="onLeagueSelectionChange($event)"
   >
     <fd-option *ngFor="let option of leagues" [value]="option">{{
-      option
+      option ?? "None"
     }}</fd-option>
   </fd-select>
 </fd-toolbar>
