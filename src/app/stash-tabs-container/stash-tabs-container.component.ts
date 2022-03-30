@@ -44,6 +44,7 @@ export class StashTabsContainerComponent implements OnInit {
   }
 
   onResetSearch(): void {
+    this.searchTerm = '';
     this.searchTermChange.emit(null);
   }
 }
