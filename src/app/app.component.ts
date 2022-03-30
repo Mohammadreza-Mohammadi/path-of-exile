@@ -1,20 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentDensityService } from '@fundamental-ngx/core';
 import { Store } from '@ngrx/store';
-import {
-  concatMap,
-  delay,
-  filter,
-  map,
-  Observable,
-  take,
-  timer,
-  withLatestFrom,
-} from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import * as Actions from './root-store/stash-tabs/actions';
 import * as Selectors from './root-store/stash-tabs/selectors';
-import { ApiResponse, Item } from './models';
+import { Item } from './models';
 
 @Component({
   selector: 'app-root',
