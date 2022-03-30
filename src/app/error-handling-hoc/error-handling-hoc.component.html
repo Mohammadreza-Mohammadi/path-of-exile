@@ -1,0 +1,55 @@
+<ng-container *ngIf="error">
+  <div class="error">
+    <fd-card
+      aria-labelledby="spot-label"
+      aria-describedby="spot-description"
+      role="group"
+    >
+      <fd-card-header [interactive]="false">
+        <h2 fd-card-title id="spot-label">
+          <fd-icon class="error-icon" [glyph]="'message-error'"></fd-icon>
+          Error
+        </h2>
+      </fd-card-header>
+      <fd-card-content>
+        <div style="display: flex">
+          <ng-lottie
+            width="120px"
+            height="120px"
+            containerClass="moving-box another-class"
+            [options]="options"
+          ></ng-lottie>
+          <p>{{ error?.message | json }}</p>
+        </div>
+        <div fd-bar barDesign="footer">
+          <div fd-bar-right>
+            <fd-toolbar fdType="transparent" [clearBorder]="true">
+              <button
+                fd-toolbar-item
+                fd-button
+                fdType="emphasized"
+                (click)="retry.emit()"
+              >
+                Retry
+              </button>
+              <button
+                fd-toolbar-item
+                fd-button
+                [fdPopoverTrigger]="popover"
+                fdType="negative"
+              >
+                Show More
+              </button>
+            </fd-toolbar>
+            <fd-popover #popover>
+              <pre style="padding: 12px">
+                {{ error | json }}
+              </pre>
+            </fd-popover>
+          </div>
+        </div>
+      </fd-card-content>
+    </fd-card>
+  </div>
+</ng-container>
+<ng-content *ngIf="!error"></ng-content>

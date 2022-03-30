@@ -1,0 +1,11 @@
+<ng-container *ngIf="loading">
+  <div class="loading">
+    <fd-busy-indicator
+      [loading]="true"
+      ariaLabel="loading"
+      title="Please Wait"
+    ></fd-busy-indicator>
+  </div>
+</ng-container>
+
+<ng-content></ng-content>

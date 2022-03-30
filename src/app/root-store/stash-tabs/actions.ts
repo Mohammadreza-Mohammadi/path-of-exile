@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { ApiResponse, StringOrNull } from '../../models';
 
 export const Load = createAction('[Stash Tab] Load', props<{ id: string }>());
+export const Retry = createAction('[Stash Tab] Retry');
 
 export const LoadStashTabSuccess = createAction(
   '[Stash Tab] Load Success',

@@ -1,0 +1,13 @@
+.error {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fd-card {
+    max-width: 400px;
+  }
+}
+.error-icon {
+  font-size: 1rem;
+  color: var(--sapNegativeElementColor, #b00);
+}

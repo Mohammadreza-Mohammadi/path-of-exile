@@ -17,19 +17,21 @@ export class AppComponent implements OnInit {
   stashItems$: Observable<Item[]>;
   loading$: Observable<boolean>;
   availableLeagueInStashTab$: Observable<string[]>;
+  error$: Observable<any>;
 
   constructor(
     private _store: Store,
     _contentDensityService: ContentDensityService
   ) {
     _contentDensityService.contentDensity.next('compact');
-    this._store.dispatch(Actions.Load({ id: environment.FIRST_STASH }));
+    this._load();
     this.stashItems$ = this._store.select(Selectors.selectStashItems);
 
     this.availableLeagueInStashTab$ = this._store.select(
       Selectors.selectAvailableLeague
     );
 
+    this.error$ = this._store.select(Selectors.selectError);
     this.loading$ = this._store
       .select(Selectors.selectLoading)
       .pipe(debounceTime(environment.DEBOUNCE_LOADING));
@@ -43,10 +45,19 @@ export class AppComponent implements OnInit {
           this._store.dispatch(Actions.Load({ id: nextStashTabId }));
       });
   }
+  onRetry() {
+    this._retry();
+  }
   onLeagueChange(e: StringOrNull) {
     this._store.dispatch(Actions.SetLeague({ name: e }));
   }
   onSearchTermChange(e: StringOrNull): void {
     this._store.dispatch(Actions.SetSearchTerm({ term: e }));
+  }
+  private _load() {
+    this._store.dispatch(Actions.Load({ id: environment.FIRST_STASH }));
+  }
+  private _retry() {
+    this._store.dispatch(Actions.Retry());
   }
 }
