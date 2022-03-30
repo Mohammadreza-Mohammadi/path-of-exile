@@ -12,6 +12,7 @@ export const selectState = createFeatureSelector<State>('stashTabs');
 
 const getError = (state: State): any => state.error;
 const getSelectedId = (state: State): string => state.selectedId;
+const getNextStashTabId = (state: State): string | null => state.nextStashTabId;
 const getLoading = (state: State): boolean => state.loading;
 
 export const { selectAll, selectEntities, selectIds, selectTotal } =
@@ -20,18 +21,27 @@ export const getSelected: MemoizedSelector<object, string> = createSelector(
   selectState,
   getSelectedId
 );
-export const selectError: MemoizedSelector<State, any> = createSelector(
+export const selectError = createSelector(selectState, getError);
+export const selectLoading = createSelector(selectState, getLoading);
+export const selectStashTabId = createSelector(selectState, getSelectedId);
+export const selectNextStashTabId = createSelector(
   selectState,
-  getError
+  getNextStashTabId
 );
-export const selectLoading: MemoizedSelector<State, boolean> = createSelector(
-  selectState,
-  getLoading
+export const selectStashTab = createSelector(
+  selectEntities,
+  selectStashTabId,
+  (entities, id) => entities[id]
 );
-export const selectStashTabId: MemoizedSelector<State, string> = createSelector(
-  selectState,
-  getSelectedId
+export const selectStashLeague = createSelector(
+  selectStashTab,
+  (stashTab) => stashTab?.stashes[0].league
 );
-export const selectStashTab: ApiResponse = memoizee((id: string) =>
-  createSelector(selectEntities, (entities) => entities[id])
+
+export const selectStashItems = createSelector(selectStashTab, (stashTab) =>
+  !stashTab
+    ? []
+    : stashTab.stashes
+        .map((c) => c.items)
+        .reduce((prev, curr, i) => curr.concat(prev), [])
 );

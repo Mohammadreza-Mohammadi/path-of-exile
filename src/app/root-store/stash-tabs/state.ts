@@ -8,10 +8,12 @@ export interface State extends EntityState<ApiResponse> {
   loading: boolean;
   error: any;
   selectedId: string;
+  nextStashTabId: string | null;
 }
 
 export const initialState: State = stashTabAdapter.getInitialState({
   selectedId: '',
+  nextStashTabId: null,
   loading: false,
   error: null,
 });
