@@ -1,1 +1,37 @@
-<p>stash-tabs-container works!</p>
+<fd-toolbar>
+  <label fd-toolbar-label> items ({{ items.length }} ) </label>
+  <fd-toolbar-spacer></fd-toolbar-spacer>
+  <fd-input-group
+    glyph="decline"
+    placeholder="Search"
+    [button]="true"
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="onSearchInputChanged($event)"
+    (addOnButtonClicked)="onResetSearch()"
+  >
+  </fd-input-group>
+  <fd-select
+    placeholder="Select an option"
+    (valueChange)="onLeagueSelectionChange($event)"
+  >
+    <fd-option *ngFor="let option of leagues" [value]="option">{{
+      option
+    }}</fd-option>
+  </fd-select>
+</fd-toolbar>
+<table fd-table>
+  <thead fd-table-header>
+    <tr fd-table-row>
+      <th fd-table-cell>Name</th>
+      <th fd-table-cell>Type Line</th>
+    </tr>
+  </thead>
+  <tbody fd-table-body>
+    <tr *ngFor="let row of items" fd-table-row>
+      <td fd-table-cell class="fd-has-font-weight-semi">
+        <a fd-link href="#">{{ row.name }}</a>
+      </td>
+      <td fd-table-cell>{{ row.typeLine }}</td>
+    </tr>
+  </tbody>
+</table>

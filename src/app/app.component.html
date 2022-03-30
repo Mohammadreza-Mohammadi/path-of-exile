@@ -1,1 +1,13 @@
-<app-stash-tabs-container></app-stash-tabs-container>
+<fd-shellbar>
+  <fd-shellbar-logo>
+    <a
+      href="#"
+      class="fd-shellbar__logo fd-shellbar__logo--image-replaced"
+      aria-label="SAP"
+    ></a>
+  </fd-shellbar-logo>
+  <fd-shellbar-title> Path of Exile </fd-shellbar-title>
+</fd-shellbar>
+<ng-container *ngIf="stashItems$ | async as items">
+  <app-stash-tabs-container [items]="items"></app-stash-tabs-container>
+</ng-container>
