@@ -42,6 +42,7 @@ export const selectStashLeague = createSelector(
   (stashTab) => stashTab?.stashes[0].league
 );
 
+// TODO: add paging
 export const selectStashItems = createSelector(
   selectState,
   selectStashTab,
